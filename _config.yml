@@ -3,13 +3,13 @@
 #
 
 # Name of your site (displayed in the header)
-name: Your Name
+name: Stevie's Dev Blog
 
 # Short bio or description (displayed in the header)
-description: Web Developer from Somewhere
+description: Front-end Web Developer Guide for Everyone!
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
+avatar: https://cvws.icloud-content.com/B/AcDGokRFNCzv2qu-on4u88MrPk4YAdSIT3IRLC5MiT2rekRqky1AtyDP/%EC%8B%AC%EB%B3%BC_01.jpg?o=AvBTRtFtDXXS55ZmFFIvlHSrtI6P8pokrQJ9WhOm79jq&v=1&x=3&a=CAogJikurL21RujdO4lQgIJLEu5P9r5Z__Rv3ZiLxlInZWcSbxDPm5_F6C4Y75LWxeguIgEAUgQrPk4YWgRAtyDPaichet6FPSB5jja5yzVmBRCeVpmBGbRalbyuJYVcW0i20bqoAgN3EM1yJ9v5z7V-ijNvsRXNiZcIbSFleFlZmg76TRrD2fkSRr1cwW6vdt2PaA&e=1608611367&fl=&r=9f2a2fe8-8f64-43e7-9970-1d392978b2ea-1&k=ttRjc6zu7yqOEhIbAv3tWg&ckc=com.apple.clouddocs&ckz=com.apple.CloudDocs&p=66&s=cV831yROL-3MKB-di1CQPU0T_XA&cd=i
 
 #
 # Flags below are optional
@@ -21,12 +21,12 @@ footer-links:
   email:
   facebook:
   flickr:
-  github: barryclark/jekyll-now
+  github: gvsteve24/gvsteve24.github.io
   instagram:
   linkedin:
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: jekyllrb
+  twitter: shoutingforU
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
