@@ -9,7 +9,7 @@ name: Stevie's WEB Dev Blog
 description: Front-end Web Developer Guide for Everyone!
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: images/logo-1.jpg
+avatar: /images/logo-1.jpg
 
 #
 # Flags below are optional
@@ -21,20 +21,12 @@ footer-links:
   email:
   facebook:
   flickr:
-<<<<<<< HEAD
-  github: 
-=======
   github: gvsteve24/gvsteve24.github.io
->>>>>>> a0554152f5072e5ee24350d2c32a7ab0ef41bf01
   instagram:
   linkedin:
   pinterest:
   rss: # just type anything here for a working RSS icon
-<<<<<<< HEAD
-  twitter: 
-=======
   twitter: shoutingforU
->>>>>>> a0554152f5072e5ee24350d2c32a7ab0ef41bf01
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
