@@ -1,0 +1,72 @@
+I"ú"<h3 id="choosing-map-for-setting-up-user-favorite-items">Choosing map for setting up user favorite items.</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// </span>
+<span class="kd">const</span> <span class="nx">userSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="c1">//...</span>
+    <span class="na">favorites</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Map</span><span class="p">,</span>
+        <span class="na">of</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h2 id="definition-of-maps-in-mongoosejs-api-doc">Definition of maps in <a href="https://mongoosejs.com/docs/schematypes.html#maps">Mongoose.js api doc</a></h2>
+<p>A MongooseMap is a subclass of JavaScriptâ€™s Map class. In Mongoose, maps are how you create a nested document with arbitrary keys.</p>
+
+<p>Definition of map in JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN</a></p>
+
+<blockquote>
+  <p>The Map object holds key-value pairs and remembers the original insertion order of the keys. Any value(both objects and primitive values) may be used as either a key or a value.</p>
+</blockquote>
+
+<p>From these two definition, we are to figure out possible schema model for favorite item design is mapping id with boolean. For example,</p>
+
+<p>Also we know that map is ordered and iterable but object is not guaranteed to iterate expectedly(because of prototype inheritance of object). Even though it is not used here as an example, object property should be only either String or Symbol. That restricts the usage of object to set key in Object.</p>
+
+<p>In terms of these facts, I have decided to use map schema type to model favorite items(in this case, user).</p>
+
+<h3 id="1-how-front-side-send-request-to-backend-logic">1. How front side send request to backend logic</h3>
+
+<p>Using axios, client send patch request with which rest api end point specifies <strong>users/${id}</strong>.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span> <span class="nx">favorites</span><span class="p">,</span> <span class="nx">setFavorites</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="k">new</span> <span class="nb">Map</span><span class="p">([]));</span>
+<span class="c1">///...</span>
+<span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="err">\</span><span class="s2">`</span><span class="p">${</span><span class="nx">Config</span><span class="p">.</span><span class="nx">ORIGIN</span><span class="p">}</span><span class="s2">/users/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">\``</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span><span class="na">headers</span><span class="p">:</span> <span class="nx">authHeader</span><span class="p">()});</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">response</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">){</span>
+    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+    <span class="nx">setFavorites</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">favorites</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-how-backend-side-process-the-logic-from-db">2. How backend side process the logic from DB</h3>
+
+<p>Here, the variable req contains the user document returned by auth middleware which searches and qualified user by jwt token.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">router</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/users/:id</span><span class="dl">'</span><span class="p">,</span> <span class="nx">auth</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">_id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+
+    <span class="k">try</span><span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">favorites</span><span class="p">.</span><span class="nx">keys</span><span class="p">()).</span><span class="nx">includes</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">_id</span><span class="p">}</span><span class="s2">`</span><span class="p">)){</span>
+            <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">favorites</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">_id</span><span class="p">);</span>
+            <span class="k">await</span> <span class="nx">user</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="s2">`favorites.</span><span class="p">${</span><span class="nx">_id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">true</span><span class="dl">'</span> <span class="p">?</span> <span class="kc">false</span> <span class="p">:</span> <span class="kc">true</span><span class="p">);</span> 
+        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+            <span class="k">await</span> <span class="nx">user</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="s2">`favorites.</span><span class="p">${</span><span class="nx">_id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">await</span> <span class="nx">user</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Therefore, if there is no exeption from the logic, frontend gets document path <strong>favorite</strong> filled with user id as key and boolean value as value of map.</p>
+
+<p>Here are the screenshots which shows request and response is successfully done.</p>
+
+<p><img src="/images/first-post-1.png" alt="demo-screen" />
+<img src="/images/first-post-2.png" alt="demo-network-1" />
+<img src="/images/first-post-3.png" alt="demo-network-2" /></p>
+:ET
