@@ -1,0 +1,14 @@
+I"i<h3 id="choosing-map-for-setting-up-user-favorite-items">Choosing map for setting up user favorite items.</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongoose</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// </span>
+<span class="kd">const</span> <span class="nx">userSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="c1">//...</span>
+    <span class="na">favorites</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Map</span><span class="p">,</span>
+        <span class="na">of</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+:ET
