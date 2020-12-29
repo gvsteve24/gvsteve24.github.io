@@ -1,15 +1,28 @@
 ---
 layout: page
-title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hi, I am Steve. Junior Web Developer who keep building up web practices for viable products.
+------
+Building up website is not easy for all creators. It would be necessary to understand least amount of knowledge to leverage what clients want to do from the website. From commercial builders such as wordpress, wix to manual web developer who employees some frameworks under their knowledge of certain computer languages.
+
+I have been building some websites for various field of usage including exhibition business, shopping mall, and intranet-service for private network in company. Those services exists on various purpose such as information provider, messaging to its user, or even chatting among its users. 
+
+This sites covers all of my works including projects, development history, etc. Feel free to read and share some thought which will bring me all joyous discussion.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+I am also looking for front-end web dev position which requires..
+
+* HTML
+* CSS
+* JavaScript
+* React.js
+* Vue.js
+* MongoDB
+* Node.js
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[junghyun30124@gmail.com](junghyun30124@gmail.com)
