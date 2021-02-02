@@ -1,0 +1,50 @@
+I"<h1 id="various-optimization">Various Optimization</h1>
+
+<h2 id="introduction">Introduction</h2>
+<h3 id="gradient-descent">Gradient descent</h3>
+
+<p>First order iterative optimization algorithm for finding a local minimum of a differentiable function
+***</p>
+
+<h2 id="important-concept-in-optimization">Important Concept in Optimization</h2>
+<ul>
+  <li>Generalization
+  How well the learned model will behave on unseen data.</li>
+  <li>Under-fitting vs. Over-fitting
+    <blockquote>
+      <p>The phenomenon of fitting our data more closely than we fit the underlying distribution is called <em>overfitting</em>, vice versa.</p>
+    </blockquote>
+  </li>
+  <li>Cross Validation</li>
+  <li>Bias-variance Trade-off</li>
+  <li>BootStrapping</li>
+  <li>Bagging &amp; Boosting</li>
+</ul>
+
+<hr />
+
+<h2 id="gradient-descent-types">Gradient Descent Types</h2>
+<ul>
+  <li>Stochastic Gradient Descent</li>
+  <li>Momentum</li>
+  <li>Nesterov accelerated gradient</li>
+  <li>Adagrad</li>
+  <li>Adadelta</li>
+  <li>RMSprop</li>
+  <li>Adam</li>
+</ul>
+
+<hr />
+
+<h2 id="regularization-types">Regularization Types</h2>
+<ul>
+  <li>Early Stopping</li>
+  <li>Parameter norm penalty</li>
+  <li>Data augmentation</li>
+  <li>Noise robustness</li>
+  <li>Label smoothing</li>
+  <li>Dropout</li>
+  <li>Batch normalization</li>
+</ul>
+
+:ET
