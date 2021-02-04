@@ -1,0 +1,14 @@
+# Convolutional Neural Network 
+
+## Convolutional Layer
+Convolutional layer is fundamental building block of CNN.
+### Description
+For example, we have 32x32x3 size of input image when we only think about spatial representation, which contains width. height, and depth.
+Next, small filter that has same depth of input image but in small piece of that such as 5x5x3. The way that we convolve this filter through from left to right, top to bottom means that we slide over the image spatially, computing dot product. Small chuck of an image and filter outputs one number which represents 75(5*5*3) dimensional dot product + bias.
+
+**activation map** is each result of convolution with certain filter. Their dimension from suface will only be calculated to count space for unique position filter gets in. After we have targeted number of activation map stacked on each other, that is output of convolutional layer. Note that when we apply convolutional layer, non linear activation function is applied, and we have the condition filter depth is equal to input depth of an image.
+
+Picture below is the example layout of convolutional neural network(ConvNet). Convolutional layer, rectifier layer, pooling operation and fully connected layer are step process of CNN. Every column here is a volume of image representation along the way through the convolutional network. Each row represents activation map. 
+
+![convnet](https://cs231n.github.io/assets/cnn/convnet.jpeg)
+
