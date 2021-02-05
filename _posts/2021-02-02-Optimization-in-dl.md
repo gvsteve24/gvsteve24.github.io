@@ -1,3 +1,8 @@
+---
+layout: post
+use-math: true
+---
+
 Various Optimization
 ======
 

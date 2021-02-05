@@ -1,0 +1,38 @@
+I"[<h2 id="sequential-data">Sequential Data</h2>
+<p>Sequence data shows contiguous data pattern such as sound, words in sentence, stock price.</p>
+
+<h2 id="autoregressive-models">Autoregressive Models</h2>
+
+<ul>
+  <li>Input definition
+    <ul>
+      <li>We need to set computationally tractable data amount.
+  $x_{t-1}, \ldots, x_1$</li>
+    </ul>
+  </li>
+  <li>
+    <p>Estimation</p>
+
+    <p>$P(x_t \mid x_{t-1}, \ldots, x_1)$</p>
+  </li>
+  <li>
+    <p>Latent Autoregressive Models
+  <img src="https://d2l.ai/_images/sequence-model.svg" alt="latent autoregressive models" /></p>
+
+    <p>$\hat{x}<em>t = P(x_t \mid h</em>{t})$</p>
+
+    <p>$h_t = g(h_{t-1}, x_{t-1})$</p>
+  </li>
+  <li>
+    <p>Estimation (Entire sequence)</p>
+
+    <p>$P(x_1, \ldots, x_T) = \prod_{t=1}^T P(x_t \mid x_{t-1}, \ldots, x_1).$</p>
+  </li>
+</ul>
+
+<h2 id="markov-models">Markov Models</h2>
+<p>When $x_{t-1}, x_{t-2}, \dots, x_{t-\tau}$ is the accurate approximation of $x_{t-1},\dot,x_1$, equation below describes Markov Models.</p>
+
+<p>$P(x_1, \ldots, x_T) = \prod_{t=1}^T P(x_t \mid x_{t-1}) \text{ where } P(x_1 \mid x_0) = P(x_1).$</p>
+
+:ET
