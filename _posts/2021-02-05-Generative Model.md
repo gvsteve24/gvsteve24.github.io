@@ -91,3 +91,5 @@ If we have values that are finite set, and are in our interest,
     $2n-1$
 * Hence, by leveraging the Markov assumption, we get exponential reduction on the number of parameters.
 * **Auto-regressive models** leverage this conditional independency.
+
+[**Related Post - Latent Variable Models, GAN**](https://gvsteve24.github.io/Generative-Model-2/)

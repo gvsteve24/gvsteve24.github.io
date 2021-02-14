@@ -1,4 +1,4 @@
-I"‰<h2 id="focused-on-trend-and-methodology">Focused on trend and methodology</h2>
+I"<h2 id="focused-on-trend-and-methodology">Focused on trend and methodology</h2>
 
 <blockquote>
   <p>What I cannot create, I do not understand.</p>
@@ -147,4 +147,6 @@
   <li>Hence, by leveraging the Markov assumption, we get exponential reduction on the number of parameters.</li>
   <li><strong>Auto-regressive models</strong> leverage this conditional independency.</li>
 </ul>
+
+<p><a href="https://gvsteve24.github.io/Generative-Model-2/"><strong>Related Post - Latent Variable Models, GAN</strong></a></p>
 :ET
