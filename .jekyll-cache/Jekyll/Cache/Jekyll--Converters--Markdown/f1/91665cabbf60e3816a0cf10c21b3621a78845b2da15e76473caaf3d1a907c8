@@ -1,0 +1,168 @@
+I"�<h1 id="goal-of-this-course">Goal of This Course</h1>
+<ul>
+  <li>Natural language processing (NLP), which aims at properly understanding and generating human languages, emrges as a crucial application of artificial intelligence, with the advancements of deep neural networks.</li>
+  <li>This course will cover various deep learning approaches as well as their applications such as language modeling, machine translation, question answering, document classification, and dialog systems.</li>
+</ul>
+
+<h1 id="academic-disciplines-related-to-nlp">Academic Disciplines related to NLP</h1>
+
+<h3 id="natural-language-processing-major-conferences-acl-emnlp-naacl"><strong>Natural language processing (major conferences: ACL, EMNLP, NAACL)</strong></h3>
+<ul>
+  <li>Includes state-of-the-art deep learning-based models and tasks</li>
+  <li>Low-level parsing
+    <ul>
+      <li>Tokenization, stemming</li>
+    </ul>
+  </li>
+  <li>Word and phrase level
+    <ul>
+      <li>Named entity recognition(NER), part-of-speech(POS) tagging, noun-phrase chunking, dependency parsing, conference resolution</li>
+    </ul>
+  </li>
+  <li>Sentence level
+    <ul>
+      <li>Sentiment analysis, machine translation</li>
+    </ul>
+  </li>
+  <li>Multi-sentence and paragraph level
+  -Entailment prediction, question answering, dialog systems, summrization</li>
+</ul>
+
+<h3 id="text-miningmajor-conferences-kdd-the-webconf-formerlywww-wsdm-cikm-icwsm"><strong>Text mining(major conferences: KDD, The WebConf (formerly,WWW), WSDM, CIKM, ICWSM)</strong></h3>
+<ul>
+  <li>Extract useful information and insights from text and document data
+    <ul>
+      <li>e.g., analyzing the trends of AI-related keywords from massive news data</li>
+    </ul>
+  </li>
+  <li>Document clustering (e.g., topic modeling)
+    <ul>
+      <li>e.g., clustering news data and grouping into different subjects</li>
+    </ul>
+  </li>
+  <li>Highly related to computational social science
+    <ul>
+      <li>e.g., analyzing the evolution of people’s political tendency based on social media data
+        <h3 id="information-retrieval-major-conference-sigir-wsdm-cikm-recsys"><strong>Information retrieval (major conference: SIGIR, WSDM, CIKM, RecSys)</strong></h3>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Highly related to computational social science</strong>
+    <ul>
+      <li>This area is not actively studied now</li>
+      <li>It has evolved into a recommendation system, which is still an active area of research.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="trend-of-nlp">Trend of NLP</h2>
+<ul>
+  <li>Text data can basically be viewd as a sequence of words, and <strong>each word can be represented as a vector</strong> through a techinque such as Word2Vec or GloVe.</li>
+  <li><strong>RNN-family models</strong>(LSTMs and GRUs), which take the sequence of these vectors of words as input, are the main architecture of NLP tasks.</li>
+  <li>Overall performance of NLP tasks has been improved since attenttion modules and Transformer models, which replaced RNNs with self-attention, have been introduced a few years ago.</li>
+  <li>As is the case for Transformer models, most of the advanced NLP models have been originally developed for improving machine translation tasks.</li>
+  <li>In the early days, **customized models for different NLP tasks had developed separately.</li>
+  <li>Since Transformer was introduced, huge models were released by stacking its basic module, self-attention, and these models are trained with large-sized datasets through language modeling tasks, one of the <strong>self-supervised training setting that does not require additional labels</strong> for a paricular task.
+    <ul>
+      <li>e.g., BERT, GPT-3,$\cdots$</li>
+    </ul>
+  </li>
+  <li>Afterwards, above models were applied to other tasks through <strong>transfer learning</strong>, and they outperformed all other customized models in each task.</li>
+  <li>Currently, these models has now become essential part in numerous NLP tasks, so <strong>NLP research become difficult with limited GPU resources</strong>, since they are too large to train.</li>
+</ul>
+
+<hr />
+<h1 id="bag-of-words">Bag-of-Words</h1>
+
+<h3 id="bag-of-words-representation">Bag-of-Words Representation</h3>
+<ul>
+  <li>Step 1. Constructing the vocabulary containing unique words
+    <ul>
+      <li>Example sentences: “John really really loves this movie”, “Jane really likes this song”</li>
+      <li>Vocabulary: {“John”, “really”, “loves”, “this”, “movie”, “Jane”, “likes”, “song”}</li>
+    </ul>
+  </li>
+  <li>Step 2. Encoding unique words to one-hot vectors
+    <ul>
+      <li>Vocabulary: {“John”, “really”, “loves”, “this”, “movie”, “Jane”, “likes”, “song”}
+        <ul>
+          <li>John: [1, 0, 0, 0, 0, 0, 0, 0]</li>
+          <li>really: [0, 1, 0, 0, 0, 0, 0, 0]</li>
+          <li>loves: [0, 0, 1, 0, 0, 0, 0, 0]</li>
+          <li>this: [0, 0, 0, 1, 0, 0, 0, 0]</li>
+          <li>movie: [0, 0, 0, 0, 1, 0, 0, 0]</li>
+          <li>Jane: [0, 0, 0, 0, 0, 1, 0, 0]</li>
+          <li>likes: [0, 0, 0, 0, 0, 0, 1, 0]</li>
+          <li>song: [0, 0, 0, 0, 0, 0, 0, 1]</li>
+        </ul>
+      </li>
+      <li>For any pair of words, the distance is $\sqrt{2}$.</li>
+      <li>For any pair of words, cosine similarity is 0.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="bag-of-words-representation-1">Bag-of-Words Representation</h3>
+<hr />
+<ul>
+  <li><strong>A sentence/document can be represented as the sum of one-hot vectors</strong>
+    <ul>
+      <li>Sentence 1: “John really really loves this movie”
+        <ul>
+          <li>John + really + really + loves + this + movie: [1 2 1 1 0 0 0]</li>
+        </ul>
+      </li>
+      <li>Sentence 2: “Jane really likes this song”
+        <ul>
+          <li>Jane + really + likes + this + song:[0 1 0 1 0 1 1 1]</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="naivebayes-classifier-for-document-classification">NaiveBayes Classifier for Document Classification</h3>
+<hr />
+<h3 id="bag-of-words-for-document-classification"><strong>Bag-of-Words for Document Classification</strong></h3>
+<p><img src="../images/NaiveBayes.png" alt="NaiveBayes" /></p>
+
+<h3 id="bayes-rule-applied-to-documents-and-classes"><strong>Bayes’ Rule Applied to Documents and Classes</strong></h3>
+<p><img src="../images/NaiveBayes-2.png" alt="NaiveBayes-2" /></p>
+
+<ul>
+  <li>For a document <em>d</em>, which consists of a sequence of words <em>w</em>, and a class <em>c</em>.</li>
+  <li>The probability of a document can be represented by multiplying the probability of each word appearing</li>
+  <li>
+    <p>$P(d|c)P(c)=P(w_1, w_2,\dots w_n|c)P(c) \to P(c)\Pi_{w_i \in W}P(w_i|c)$(by conditional independence assumption)</p>
+  </li>
+  <li>
+    <h3 id="example"><strong>Example</strong></h3>
+    <ul>
+      <li>For a document <em>d</em>, which consists of sequence of words <em>w</em>, and a class <em>c</em>.</li>
+    </ul>
+
+    <p><img src="../images/NaiveBayes-3.png" alt="NaiveBayes-3" /></p>
+
+    <ul>
+      <li>For each word $w_i$ we can calculate conditional probability for class $c$
+        <ul>
+          <li>$P(w_k|c_i)=\frac{n_k}{n}$, where n_k is occurrences of w_k in documents of topic c_i.</li>
+        </ul>
+
+        <p><img src="../images/NaiveBayes-4.png" alt="NaiveBayes-4" /></p>
+      </li>
+      <li>
+        <h3 id="for-a-test-document-d_5--mathrmclassification-task-uses-transformer"><strong>For a test document $d_5 = \mathrm{“Classification task uses transformer”}$</strong></h3>
+        <ul>
+          <li>We calculate the conditional probability of the document for each class</li>
+          <li>We can choose a class that has the highest probability for the document</li>
+          <li>$P(c_{CV}|d_5) = P(c_{CV})\Pi_{w_i \in W}P(w|c_{CV}) = \frac{1}{2}\times \frac{1}{14}\times \frac{1}{14}\times \frac{1}{14}\times \frac{1}{14}\times = 0.00005$</li>
+          <li>$P(c_{NLP}|d_5) = P(c_{NLP})\Pi_{w_i \in W}P(w|c_{NLP}) = \frac{1}{2}\times \frac{1}{10}\times \frac{2}{10}\times \frac{1}{10}\times \frac{1}{10}\times \approx 0.00003$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+:ET
