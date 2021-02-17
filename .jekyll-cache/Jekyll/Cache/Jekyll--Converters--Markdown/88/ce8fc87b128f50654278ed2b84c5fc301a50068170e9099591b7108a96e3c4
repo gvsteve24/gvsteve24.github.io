@@ -1,0 +1,10 @@
+I"><h1 id="basics-of-recurrent-neural-networks-rnns">Basics of Recurrent Neural Networks (RNNs)</h1>
+
+<h2 id="type-of-rnns">Type of RNNs</h2>
+<ul>
+  <li>
+    <h3 id="basic-structure">Basic structure</h3>
+    <p><img src="../images/unrolled recurrent neural network.PNG" alt="unrolled neural network" /></p>
+  </li>
+</ul>
+:ET

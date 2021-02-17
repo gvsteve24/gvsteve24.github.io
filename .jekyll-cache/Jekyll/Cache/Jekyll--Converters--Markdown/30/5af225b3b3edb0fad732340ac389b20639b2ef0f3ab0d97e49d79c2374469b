@@ -1,0 +1,44 @@
+I"m<h1 id="basics-of-recurrent-neural-networks-rnns">Basics of Recurrent Neural Networks (RNNs)</h1>
+
+<h2 id="type-of-rnns">Type of RNNs</h2>
+<hr />
+<ul>
+  <li>
+    <h3 id="basic-structure">Basic structure</h3>
+    <p><img src="../images/unrolled recurrent neural network.PNG" alt="unrolled neural network" /></p>
+  </li>
+</ul>
+
+<h2 id="recurrent-neural-network">Recurrent Neural Network</h2>
+<hr />
+<ul>
+  <li>
+    <h3 id="inputs-and-outputs-of-rnns-rolled-version">Inputs and outputs of RNNs (rolled version)</h3>
+    <ul>
+      <li>
+        <h4 id="we-usually-want-to-predict-a-vector-at-some-time-steps">We usually want to predict a vector at some time steps</h4>
+        <p><img src="../images/rnn-diagram.png" alt="rnn diagram" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3 id="how-to-calculate-the-hidden-state-of-rnns">How to calculate the hidden state of RNNs</h3>
+    <ul>
+      <li>
+        <h4 id="we-can-process-a-sequence-of-vectors-by-applying-a-recurrence-formula-at-every-time-step">We can process a sequence of vectors by applying a recurrence formula at every time step</h4>
+      </li>
+      <li>$h_{t-1}$: old hidden-state vector</li>
+      <li>$x_t$: input vector at some time step</li>
+      <li>$h_t$: new hidden-state vector</li>
+      <li>$f_W$: RNN function with parameters W</li>
+      <li>
+        <p>$y_t$: output vector at time step t</p>
+
+        <p>$h_t=f_W(h_{t-1}, x_t)$
+  <img src="../images/rnn-diagram-2.png" alt="rnn diagram-2" /></p>
+      </li>
+      <li><span style="color: red">Notice: The same function and the same set of parameters are used at every time step</span></li>
+    </ul>
+  </li>
+</ul>
+:ET
