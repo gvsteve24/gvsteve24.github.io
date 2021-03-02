@@ -1,0 +1,66 @@
+I"<h1 id="seq2seq-with-attention">Seq2Seq with attention</h1>
+<h1 id="encoder-decoder-architecture">Encoder-decoder architecture</h1>
+<h1 id="attention-mechanism">Attention mechanism</h1>
+
+<h2 id="recall-type-of-model">Recall: Type of Model</h2>
+
+<ul>
+  <li>
+    <h3 id="words-sequence-in-many-to-many-model">Words sequence in many to many model</h3>
+  </li>
+</ul>
+
+<h2 id="seq2seq-model">Seq2Seq Model</h2>
+<hr />
+<ul>
+  <li>
+    <h3 id="it-takes-a-sequence">it takes a sequence</h3>
+  </li>
+  <li>
+    <p>note: encoder and decoder not having sharing parameters</p>
+  </li>
+  <li>RNN in detail took LSTM model</li>
+  <li>
+    <p>final word taken by encoder -&gt; output hidden state vector -&gt; decoder take it to process each words</p>
+  </li>
+  <li>first token is sos token in decoder. From time steps.</li>
+  <li>last token is eos token in decoder. til time step to terminate.</li>
+</ul>
+
+<h2 id="seq2seq-model-with-attention">Seq2seq model with attention</h2>
+<hr />
+<ul>
+  <li>RNN accumulate hidden state vector which fixed dimension hidden state vector is full of information with limited vector dimension</li>
+  <li>LSTM resoved long term memory issue, but it still have some loss from the beginning of time . e.g. when “I go home” is being tranllateed, it’s poss to loss “I “ ( three was trial that reversed the order in times)</li>
+  <li>
+    <p>If we use attention, each hidden state vector can delivered to decoder from each time step that is favorable to decoder process selected in favor</p>
+  </li>
+  <li>sequence of Encoder RNN can be vector inner producted to the out hidden vector of decoder RNN.</li>
+  <li>each attention distrivution can be assessed by applyin softmax function to attention score</li>
+  <li>가중평균 ed vector can bring out context vector from attention output.</li>
+  <li>Concat between attention output(encoder hidden state vector) and decoder hidden state vector</li>
+  <li>After first word anticipation from decoder, it passes hidden state to next decoder rnn (next time step)</li>
+  <li>Attention module can be used with next decoder hiddenstate vector, which will be producete dinner with attention scores , which eventually put out 가중평균</li>
+  <li>어텐션 벡터 ,. weighted sum is 1 -&gt; vector definition</li>
+  <li>These step set will be repeated.
+note : hiddenstate vector does two role (output word anticipation and selected weight proeces to score)</li>
+  <li>backprop
+    <ul>
+      <li>bakcprop goes two way : attention output &amp; decoder Rnn</li>
+      <li>decoder each time step has each input word / if previous expectation was wrong, inference word (first one) is passed to next timestep.</li>
+      <li>Replace next weird output with accurate input is called teacher forcing(feasible).</li>
+      <li>non teacher forcing is close to real world.</li>
+      <li>teacher forcing in the begging and change method as training model develops.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="different-attention-mechanisms">Different Attention Mechanisms</h1>
+<hr />
+<p>\(\textrm{score}(h_t, \bar{h}_s) = 
+    \begin{cases}
+        h_1^{\top}\bar{h}_s &amp; \quad \textit{dot}\\
+        h_1^{\top}\textrm{W}_{\alpha}\bar{h}_s &amp;\quad \textit{general}\\
+        v_{\alpha}^{\top}tanh(\textrm{W}_{\alpha}[h_t;\bar{h}_s])  &amp; \quad \textit{concat}
+    \end{cases}\)</p>
+:ET

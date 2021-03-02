@@ -1,0 +1,133 @@
+I"�<h2 id="transformer-high-level-view">Transformer: High-level view</h2>
+<hr />
+<ul>
+  <li>
+    <h3 id="no-more-rnn-or-cnn-modules">No more RNN or CNN modules</h3>
+  </li>
+</ul>
+
+<h2 id="rnn-long-term-dependency">RNN: Long-term dependency</h2>
+<hr />
+<ul>
+  <li>hidden state vector is being used to make output of each decoder</li>
+  <li>e.g. the third time step home has information in that it gives assumption that repetitive path of hidden vector loses some information through.</li>
+</ul>
+
+<h2 id="bidirectional-rnns">Bidirectional RNNs</h2>
+<hr />
+<ul>
+  <li>
+    <h3 id="forward-rnn">Forward RNN</h3>
+  </li>
+  <li>
+    <h3 id="backward-rnn-separate-h-from-forward">BAckward RNN (separate h from forward)</h3>
+    <ul>
+      <li>” I go home”
+        <ul>
+          <li>after rnn passing go includes “I” (forward rnn)</li>
+          <li>after rnn passing go includes “ home” (backward rnn)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="transformer-long-term-dependency">Transformer: Long-Term Dependency</h2>
+<hr />
+<ul>
+  <li>attention sets same input output vector</li>
+  <li>decoder takes in the output hidden vector of encoding</li>
+  <li>Query vector : criteria from encoder input vector of inner product operand</li>
+  <li>in sequence encoding , one value does three roles ( Queries, Kys, Values)</li>
+  <li>Linear transforamtion matrix will be given to apply to three different roles</li>
+  <li>Linear trnasformation matrix</li>
+  <li>key vector and value vector will be same number of itself</li>
+  <li>one query vector would have inner product with keys -&gt; softmax(output) -&gt; second query vector applied to second input of “go”</li>
+  <li>anotehr expampel
+    <ul>
+      <li>
+        <p>“Thinking Machines”</p>
+      </li>
+      <li>input low vector and</li>
+      <li>Value vector in weighted sum  -&gt; h1 vector</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="transformer-scaled-dot-product-attention">Transformer: Scaled Dot-Product Attention</h2>
+<hr />
+<ul>
+  <li>
+    <h5 id="inputs-a-query-q-and-a-set-of-key-value-kv-pairs-to-an-output">Inputs: a query <em>q</em> and a set of key-value (<em>k,v</em>) pairs to an output</h5>
+
+    <p>$A(q, K, V) = \sum_i \frac{\text{exp}(q\cdot k_i)}{\sum_j\text{exp}(q\cdot k_j)}$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>$(</td>
+          <td>V</td>
+          <td>\times d_{\textrm{v}}) = (|Q|\times d_{\textrm{v})$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>softmax is multiplied in row-wise</li>
+</ul>
+
+<h2 id="trnasformaer-">Trnasformaer :</h2>
+<ul>
+  <li>
+    <h3 id="query-key-value">Query Key Value</h3>
+  </li>
+  <li>
+    <p>these are passed to softmax and then depended on dimension of query and key. so we have put denominator as $d_k$(demension)</p>
+  </li>
+  <li>
+    <h3 id="problem">Problem</h3>
+    <ul>
+      <li>As $d_k$ gets large, the variance of q^Tk increases</li>
+      <li>Some values inside the softmax get large</li>
+      <li>The softmax gets very peaked</li>
+      <li>Hence, its gradient gets smaller</li>
+    </ul>
+  </li>
+  <li>variance and mean of $ax, by$ will be assumed that a, x and b,y are independent.</li>
+  <li>e.g. when their varience, mean = (1, 0), we would know linear combination $\textrm{ax+by}$’s v and m are (2, 0)</li>
+  <li>
+    <p>variance will be maintained</p>
+  </li>
+  <li>
+    <h3 id="solution">Solution</h3>
+    <ul>
+      <li>
+        <p>Scaled by the length of query / key vectors:</p>
+
+        <p>$A(Q, K, V) = \textit{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="transformer-multi-head-attention">Transformer: Multi-Head Attention</h2>
+<hr />
+<h4 id="the-input-word-vectors-are-the-queries-keys-and-values">The input word vectors are the queries, keys and values</h4>
+<h4 id="in-other-words-the-word-vectors-themselves-select-each-other">In other words, the word vectors themselves select each other</h4>
+<h3 id="problem-of-single-attention">Problem of single attention</h3>
+<ul>
+  <li>
+    <h4 id="only-one-way-for-words-to-interact-with-one-another">Only one way for words to interact with one another</h4>
+    <h3 id="solution-1">Solution</h3>
+  </li>
+  <li>
+    <h4 id="multi-head-attention-maps-q-k-v-into-the-h-number-of-lower-dimensional-spaces-via-w-matrices">Multi-head attention maps Q, K, V into the h number of lower-dimensional spaces via W matrices.</h4>
+    <h4 id="then-apply-attention-then-concatenate-outputs-and-pipe-through-linear-layer">Then apply attention, then concatenate outputs and pipe through linear layer</h4>
+  </li>
+  <li>
+    <h3 id="k-v-q-will-passed-to-w_k-w_v-w_q">k, v, q will passed to $W_k, W_v, W_q$</h3>
+  </li>
+  <li>
+    <h3 id="encoding-vector-will-be-attained">Encoding vector will be attained</h3>
+  </li>
+</ul>
+:ET
